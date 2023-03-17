@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo "Welcome to TM Bank"
+echo "Banking services, Out of this world"
+echo "Enter your name"
+read $name
+echo "please enter your pin"
+read -s pin
+echo "Dear $name, you are Welcome to TM Bank"
+echo "$name, Login successful"
+
