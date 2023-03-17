@@ -1,0 +1,16 @@
+@@ -0,0 +1,15 @@
+#tmshark app builder
+# this is an app that will be use for preorder login for the jobs undone
+# app will be use practically to respond to clients as an AI
+# let give you some taste of what to expect
+echo "Hello world"
+echo "welcome to tmshark"
+echo "what is your name"
+read "name"
+echo "How may I be of help "name""
+read "name, enter your IUN"
+echo "IUN has been added to your Order's code"
+echo "insert your order's code for us to proceed"
+read "order code accepeted"
+echo "your order will be process in a shortwhile"
+echo "thank you for your usual patronage"
