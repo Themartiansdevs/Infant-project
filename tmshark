@@ -1,4 +1,3 @@
-@@ -0,0 +1,15 @@
 #tmshark app builder
 # this is an app that will be use for preorder login for the jobs undone
 # app will be use practically to respond to clients as an AI
@@ -14,3 +13,4 @@ echo "insert your order's code for us to proceed"
 read "order code accepeted"
 echo "your order will be process in a shortwhile"
 echo "thank you for your usual patronage"
+echo "do have a lovely day"
