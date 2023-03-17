@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# This file is aimed at helping you install all your packages in aws linux with ease.
+# I aim to name this "Martian Installer", but i am open to suggestions
+# This file will create a user & password for you
+# This file will install the basic required packages for you
+# This file will add the created username to the sudoers list
+
+echo "Welcome to Martian Installer"
+echo "Kindly enter the username for the user you want to create"
+read username
+echo "The Username you entered is $username"
+sudo useradd $username
+echo "$username user account created successfully"
+echo "set the password for $username"
+sudo passwd $username
+echo "Username and Password Created successfully"
+sudo hostname $username
+sudo su-
+echo "Preparing to install Packages"
+sudo yum install tree nano vim git wget httpd  -y 
+echo "Now starting & enabling http webserver"
+sudo systemctl start httpd
+sudo systemctl enable httpd
+systemctl status httpd
+echo "Now adding $username to sudoers list"
+sudo echo "$username ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/$username
+sudo systemctl restart sshd
+su $username
+
+
