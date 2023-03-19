@@ -8,4 +8,6 @@ echo "please enter your pin"
 read -s pin
 echo "Dear $name, you are Welcome to TM Bank"
 echo "$name, Login successful"
+#echo "new user detected"
+#date
 
