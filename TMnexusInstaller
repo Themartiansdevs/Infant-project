@@ -1,0 +1,51 @@
+#!/bin/bash
+
+#Welcome to TM NEXUS INSTALLER
+#This script is to install nexus successfully
+#This script will also install wget,git,nano,unzip,and java 1.8+
+#Run this script after you launch your nexus instance & connect it to your ssh client
+#This script will also help you cd to the /opt directory before starting installations
+#This script will also unzip your tar nexus file for you
+#This script will delete the unneeded tar file for you after unzipping/tarring the file to help you free up system space
+#This script will also help to chown and chmod of the nexus files that have been extracted
+#This script will also create a link to enable us start nexus with ease
+
+#Creating a new user
+sudo hostname nexus
+sudo useradd nexus
+#Adding new user to sudoers file
+sudo echo "nexus ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/nexus
+#switching user to thenewly created user
+sudo su - nexus
+#cd into /opt to comply with best practices 
+cd /opt
+#Installing fundametal yum packages
+sudo yum install git wget unzip tree nano vim  -y
+#Installing java
+sudo yum install java-11-openjdk-devel java-1.8.0-openjdk-devel -y
+#Downloading nexus
+sudo wget http://download.sonatype.com/nexus/3/nexus-3.15.2-01-unix.tar.gz
+#Unzipping the nexus file
+sudo tar -zxvf nexus-3.15.2-01-unix.tar.gz
+#Renaming our new file
+sudo mv /opt/nexus-3.15.2-01 /opt/nexus
+#Deleting unused nexus file to free up space
+sudo rm -rf nexus-3.15.2-01-unix.tar.gz 
+#modifying our nexus file and granting them new permission
+sudo chown -R nexus:nexus /opt/nexus
+sudo chown -R nexus:nexus /opt/sonatype-work
+sudo chmod -R 775 /opt/nexus
+sudo chmod -R 775 /opt/sonatype-work
+#enabling our created user to be able to run as user
+echo 'run_as_user="nexus" ' > /opt/nexus/bin/nexus.rc
+#Creating nexus link
+sudo ln -s /opt/nexus/bin/nexus /etc/init.d/nexus
+#Launching nexus
+sudo systemctl enable nexus
+sudo systemctl start nexus
+sudo systemctl status nexus
+#Confirming that our script has run successfully
+echo "end of nexus installation"
+echo "Magic is indeed from mars"
+echo "Nexus is started"
+
